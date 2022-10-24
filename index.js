@@ -86,7 +86,7 @@ const ReadAllTasks = () => {
   Old_TaskData.forEach((Task) => {
     const TaskDiv = document.createElement("div");
     TaskDiv.setAttribute("id", "id_" + Task.id);
-    TaskDiv.classList.add('MoveTransition')
+    TaskDiv.classList.add('fadeIn')
  
     const h1Title = document.createElement("h2");
     h1Title.textContent = Task.title;
