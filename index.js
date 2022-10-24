@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("Tasks", "[]");
     Old_TaskData = JSON.parse(localStorage.getItem("Tasks"));
   } else {
-    ReadTasks();
+    ReadAllTasks();
   }
 });
 
@@ -32,18 +32,62 @@ DivPrueba.addEventListener("click", (e) => {
   }
 
   Old_TaskData = JSON.parse(localStorage.getItem("Tasks"));
-  document.getElementById(`${DivID}`).remove();
+
+  InsertDivAnimation = document.getElementById(`${DivID}`)
+  InsertDivAnimation.classList.add('fadeOut')
+
+  setTimeout(() => {
+    document.getElementById(`${DivID}`).remove()
+  }, 500);
+;
 
   //console.log("Elemento Borrado");
   //console.log(Old_TaskData)
 });
 
-const ReadTasks = () => {
+const AddNewTaskAnimation = (id,title,description,date) =>{
+  const TaskDiv = document.createElement("div");
+    TaskDiv.setAttribute("id", "id_" + id);
+    TaskDiv.classList.add('fadeIn')
+ 
+    const h1Title = document.createElement("h2");
+    h1Title.textContent = title;
 
+    const pDescrip = document.createElement("p");
+    pDescrip.textContent = description;
+
+    const pDate = document.createElement("p");
+    pDate.textContent = date;
+
+    const DelTask = document.createElement("button");
+    DelTask.textContent = "";
+    DelTask.classList.add(id);
+    DelTask.classList.add("DeleteTaskBtn");
+    DelTask.classList.add('mdl-button')
+    DelTask.classList.add('mdl-js-button')
+    DelTask.classList.add('mdl-button--fab')
+    DelTask.classList.add('mdl-button--mini-fab')
+
+    const DelBtnIcon = document.createElement("i")
+    DelBtnIcon.classList.add('material-icons')
+    DelBtnIcon.classList.add('Trash-icon')
+    DelBtnIcon.textContent = "delete"
+
+    DelTask.appendChild(DelBtnIcon)
+    TaskDiv.appendChild(h1Title);
+    TaskDiv.appendChild(pDescrip);
+    TaskDiv.appendChild(pDate);
+    TaskDiv.appendChild(DelTask);
+
+    DivPrueba.appendChild(TaskDiv);
+}
+
+const ReadAllTasks = () => {
   Old_TaskData.forEach((Task) => {
     const TaskDiv = document.createElement("div");
     TaskDiv.setAttribute("id", "id_" + Task.id);
-
+    TaskDiv.classList.add('MoveTransition')
+ 
     const h1Title = document.createElement("h2");
     h1Title.textContent = Task.title;
 
@@ -56,7 +100,7 @@ const ReadTasks = () => {
     const DelTask = document.createElement("button");
     DelTask.textContent = "";
     DelTask.classList.add(Task.id);
-    DelTask.classList.add("DeleteTaskBtn");
+   // DelTask.classList.add("DeleteTaskBtn");
     DelTask.classList.add('mdl-button')
     DelTask.classList.add('mdl-js-button')
     DelTask.classList.add('mdl-button--fab')
@@ -66,7 +110,6 @@ const ReadTasks = () => {
     DelBtnIcon.classList.add('material-icons')
     DelBtnIcon.classList.add('Trash-icon')
     DelBtnIcon.textContent = "delete"
-
 
     DelTask.appendChild(DelBtnIcon)
     TaskDiv.appendChild(h1Title);
@@ -85,7 +128,9 @@ AddTaskBtn.addEventListener("click", (e) => {
   let Form_TaskDescrip = TaskForm.description.value;
 
   if (Form_TaskTitle == "" || Form_TaskDescrip == "") {
-    //alert("Llenar los campos, por favor.");
+    let SnackBar = document.getElementById("snackbar");
+    SnackBar.className = "show";
+    setTimeout(function(){ SnackBar.className = SnackBar.className.replace("show", ""); }, 3000);
   } else {
     const NewTask = {
       id: Math.random(),
@@ -100,9 +145,8 @@ AddTaskBtn.addEventListener("click", (e) => {
     localStorage.setItem("Tasks", JSON.stringify(Old_TaskData));
     //console.log(Old_TaskData);
 
-    DivPrueba.innerHTML = ``;
-
-    ReadTasks();
+    TaskForm.reset();
+    AddNewTaskAnimation(new_TaskData.id,new_TaskData.title,new_TaskData.description,new_TaskData.date);
   }
 });
 
