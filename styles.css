@@ -22,31 +22,36 @@ h1{
 .grow { transition: all .2s ease-in-out; }
 .grow:hover { transform: scale(1.1); }
 
+.TaskDiv{
+  display: block;
+}
 
 .fadeIn {
-    animation: fadingIn 0.5s forwards;
+  animation: fadingIn 0.5s forwards;
+  -webkit-animation: fadingIn 0.5s forwards;
   }
 
 .fadeOut {
-    animation: fadingOut 0.5s forwards;
+   animation: fadingOut 0.5s forwards;
+  -webkit-animation: fadingOut 0.5s forwards;
 }
 
 @keyframes fadingIn {
     0% {
-      scale: 0;
+      -webkit-transform: scale(0);
     }
     100% {
-      scale: 1;
+      -webkit-transform: scale(1);
     }
   }
 
   
 @keyframes fadingOut {
     0% {
-      scale: 1;
+      -webkit-transform: scale(1);
     }
     100% {
-      scale: 0;
+      -webkit-transform: scale(0);
     }
   }
 
