@@ -1,0 +1,20 @@
+form{
+    text-align: center;
+}
+
+form .mdl-button{
+    margin-left: 1.5rem;
+}
+
+h1{
+    color: red;
+}
+
+#div_pruebaa{
+    text-align: center;
+}
+
+.Trash-icon{
+    z-index: -50;
+    color: red;
+}
