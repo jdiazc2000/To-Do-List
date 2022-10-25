@@ -1,100 +1,119 @@
-form{
-    text-align: center;
+*{
+  margin: 0;
+  padding: 0;
 }
 
-form .mdl-button{
-    padding-left: 1rem;
+form {
+  text-align: center;
 }
 
-h1{
-    color: red;
+form .mdl-button {
+  padding-left: 1rem;
 }
 
-#div_pruebaa{
-    text-align: center;
+h1 {
+  color: red;
 }
 
-.Trash-icon{
-    z-index: -1;
-    color: red;
+#div_pruebaa {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: auto;
+
+  justify-content: space-evenly;
+  justify-items: center;
+  align-content: space-evenly;
+  align-items: center;
+
+  gap: 1.2rem;
 }
 
-.grow { transition: all .2s ease-in-out; }
-.grow:hover { transform: scale(1.1); }
-
-.TaskDiv{
-  display: block;
-}
 
 .fadeIn {
   animation: fadingIn 0.5s forwards;
   -webkit-animation: fadingIn 0.5s forwards;
-  }
+}
 
 .fadeOut {
-   animation: fadingOut 0.5s forwards;
+  animation: fadingOut 0.5s forwards;
   -webkit-animation: fadingOut 0.5s forwards;
 }
 
 @keyframes fadingIn {
-    0% {
-      -webkit-transform: scale(0);
-    }
-    100% {
-      -webkit-transform: scale(1);
-    }
+  0% {
+    -webkit-transform: scale(0);
   }
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
 
-  
 @keyframes fadingOut {
-    0% {
-      -webkit-transform: scale(1);
-    }
-    100% {
-      -webkit-transform: scale(0);
-    }
+  0% {
+    -webkit-transform: scale(1);
   }
+  100% {
+    -webkit-transform: scale(0);
+  }
+}
 
+/* From uiverse.io by @alexruix */
+.card {
+  width: 190px;
+  height: 254px;
+  border-radius: 20px;
+  background: #f5f5f5;
+  position: relative;
+  padding: 0.8rem;
+  border: 2px solid #c3c6ce;
+  transition: 0.5s ease-out;
+  overflow: visible;
 
-
-  #snackbar {
-    visibility: hidden;
-    min-width: 250px;
-    margin-left: -125px;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    border-radius: 2px;
-    padding: 16px;
-    position: fixed;
-    z-index: 1;
-    left: 50%;
-    top: 30px;
-    font-size: 17px;
-  }
-  
-  #snackbar.show {
-    visibility: visible;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  }
-  
-  @-webkit-keyframes fadein {
-    from {top: 0; opacity: 0;} 
-    to {top: 30px; opacity: 1;}
-  }
-  
-  @keyframes fadein {
-    from {top: 0; opacity: 0;}
-    to {top: 30px; opacity: 1;}
-  }
-  
-  @-webkit-keyframes fadeout {
-    from {top: 30px; opacity: 1;} 
-    to {top: 0; opacity: 0;}
-  }
-  
-  @keyframes fadeout {
-    from {top: 30px; opacity: 1;}
-    to {top: 0; opacity: 0;}
-  }
+  text-align: center;
+ }
+ 
+ .card-details {
+  color: rgb(0, 0, 0);
+  height: 100%;
+  gap: .5em;
+  display: grid;
+  place-content: center;
+  border-radius: 1rem;
+ }
+ 
+ .card-button {
+  transform: translate(-50%, 125%);
+  width: 60%;
+  border-radius: 1rem;
+  border: none;
+  background-color: #008bf8;
+  color: #fff;
+  font-size: 1rem;
+  padding: .5rem 1rem;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  opacity: 0;
+  transition: 0.3s ease-out;
+ }
+ 
+ .text-body {
+  color: rgb(0, 0, 0);
+ }
+ 
+ /*Text*/
+ .text-title {
+  font-size: 1.5em;
+  font-weight: bold;
+ }
+ 
+ /*Hover*/
+ .card:hover {
+  border-color: #008bf8;
+  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+ }
+ 
+ .card:hover .card-button {
+  transform: translate(-50%, 50%);
+  opacity: 1;
+ }

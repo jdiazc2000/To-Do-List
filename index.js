@@ -2,7 +2,6 @@ MainDiv = document.getElementById("Main_div");
 TaskForm = document.getElementById("taskForm");
 AddTaskBtn = document.getElementById("AddTaskBtn");
 DeleteAllBtn = document.getElementById("DeleteAll");
-
 DivPrueba = document.getElementById("div_pruebaa");
 
 let Old_TaskData = JSON.parse(localStorage.getItem("Tasks"));
@@ -45,39 +44,42 @@ DivPrueba.addEventListener("click", (e) => {
   //console.log(Old_TaskData)
 });
 
-const AddNewTaskAnimation = (id,title,description,date) =>{
+const AddNewTaskAnimation = (id,title,description,date,hoverColor) =>{
   const TaskDiv = document.createElement("div");
     TaskDiv.setAttribute("id", "id_" + id);
+    TaskDiv.classList.add('card')
     TaskDiv.classList.add('fadeIn')
  
-    const h1Title = document.createElement("h2");
-    h1Title.textContent = title;
+      //
+      const DataDiv = document.createElement("div")
+      DataDiv.classList.add('card-details')
+      DataDiv.style.backgroundColor = "#" + hoverColor 
 
-    const pDescrip = document.createElement("p");
-    pDescrip.textContent = description;
+ 
 
-    const pDate = document.createElement("p");
-    pDate.textContent = date;
+      const pTitle = document.createElement("p");
+      pTitle.classList.add('text-title')
+      pTitle.textContent = title;
+  
+      const pDescrip = document.createElement("p");
+      pDescrip.classList.add('text-body')
+      pDescrip.textContent = description;
+  
+      const pDate = document.createElement("p");
+      pDate.classList.add('text-date')
+      pDate.textContent = date;
+  
+      const DelTask = document.createElement("button");
+      DelTask.textContent = "Eliminar";
+      DelTask.classList.add(id);
+      DelTask.classList.add('card-button');
+     //
 
-    const DelTask = document.createElement("button");
-    DelTask.textContent = "";
-    DelTask.classList.add(id);
-    DelTask.classList.add("DeleteTaskBtn");
-    DelTask.classList.add('mdl-button')
-    DelTask.classList.add('mdl-js-button')
-    DelTask.classList.add('mdl-button--fab')
-    DelTask.classList.add('mdl-button--mini-fab')
-
-    const DelBtnIcon = document.createElement("i")
-    DelBtnIcon.classList.add('material-icons')
-    DelBtnIcon.classList.add('Trash-icon')
-    DelBtnIcon.textContent = "delete"
-
-    DelTask.appendChild(DelBtnIcon)
-    TaskDiv.appendChild(h1Title);
-    TaskDiv.appendChild(pDescrip);
-    TaskDiv.appendChild(pDate);
-    TaskDiv.appendChild(DelTask);
+    TaskDiv.appendChild(DataDiv)
+    DataDiv.appendChild(pTitle);
+    DataDiv.appendChild(pDescrip);
+    DataDiv.appendChild(pDate);
+    DataDiv.appendChild(DelTask);
 
     DivPrueba.appendChild(TaskDiv);
 }
@@ -87,41 +89,52 @@ const ReadAllTasks = () => {
     const TaskDiv = document.createElement("div");
     TaskDiv.setAttribute("id", "id_" + Task.id);
     TaskDiv.classList.add('TaskDiv')
+    TaskDiv.classList.add('card')
     TaskDiv.classList.add('fadeIn')
+
+    //
+    const DataDiv = document.createElement("div")
+    DataDiv.classList.add('card-details')
+    DataDiv.style.backgroundColor = "#" + Task.hoverColor
  
-    const h1Title = document.createElement("h2");
-    h1Title.textContent = Task.title;
+    const pTitle = document.createElement("p");
+    pTitle.classList.add('text-title')
+    pTitle.textContent = Task.title;
 
     const pDescrip = document.createElement("p");
+    pDescrip.classList.add('text-body')
     pDescrip.textContent = Task.description;
 
     const pDate = document.createElement("p");
+    pDate.classList.add('text-date')
     pDate.textContent = Task.date;
 
     const DelTask = document.createElement("button");
-    DelTask.textContent = "";
+    DelTask.textContent = "Borrar";
     DelTask.classList.add(Task.id);
-   // DelTask.classList.add("DeleteTaskBtn");
-    DelTask.classList.add('mdl-button')
-    DelTask.classList.add('mdl-js-button')
-    DelTask.classList.add('mdl-button--fab')
-    DelTask.classList.add('mdl-button--mini-fab')
+    DelTask.classList.add('card-button');
+   //
 
-    const DelBtnIcon = document.createElement("i")
-    DelBtnIcon.classList.add('material-icons')
-    DelBtnIcon.classList.add('Trash-icon')
-    DelBtnIcon.textContent = "delete"
-
-    DelTask.appendChild(DelBtnIcon)
-    TaskDiv.appendChild(h1Title);
-    TaskDiv.appendChild(pDescrip);
-    TaskDiv.appendChild(pDate);
+    TaskDiv.appendChild(DataDiv)
+    DataDiv.appendChild(pTitle);
+    DataDiv.appendChild(pDescrip);
+    DataDiv.appendChild(pDate);
     TaskDiv.appendChild(DelTask);
 
     DivPrueba.appendChild(TaskDiv);
   });
 };
 
+TaskForm.addEventListener('keyup', () => {
+  let Form_TaskTitle = TaskForm.title.value;
+  let Form_TaskDescrip = TaskForm.description.value;
+
+  if (Form_TaskTitle == "" || Form_TaskDescrip == ""){
+    AddTaskBtn.setAttribute('disabled','disabled')
+  }else{
+    AddTaskBtn.removeAttribute('disabled')
+  }
+})
 
 AddTaskBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -133,11 +146,13 @@ AddTaskBtn.addEventListener("click", (e) => {
     SnackBar.className = "show";
     setTimeout(function(){ SnackBar.className = SnackBar.className.replace("show", ""); }, 3000);
   } else {
+    
     const NewTask = {
       id: Math.random(),
       title: Form_TaskTitle,
       description: Form_TaskDescrip,
       date: new Date().toDateString(),
+      hoverColor: Math.floor(Math.random()*16777215).toString(16)
     };
 
     new_TaskData = NewTask;
@@ -146,8 +161,9 @@ AddTaskBtn.addEventListener("click", (e) => {
     localStorage.setItem("Tasks", JSON.stringify(Old_TaskData));
     //console.log(Old_TaskData);
 
+    AddTaskBtn.setAttribute('disabled','disabled')
     TaskForm.reset();
-    AddNewTaskAnimation(new_TaskData.id,new_TaskData.title,new_TaskData.description,new_TaskData.date);
+    AddNewTaskAnimation(new_TaskData.id,new_TaskData.title,new_TaskData.description,new_TaskData.date,new_TaskData.hoverColor);
   }
 });
 
