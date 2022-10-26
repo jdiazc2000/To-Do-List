@@ -55,8 +55,6 @@ const AddNewTaskAnimation = (id,title,description,date,hoverColor) =>{
       DataDiv.classList.add('card-details')
       DataDiv.style.backgroundColor = "#" + hoverColor 
 
- 
-
       const pTitle = document.createElement("p");
       pTitle.classList.add('text-title')
       pTitle.textContent = title;

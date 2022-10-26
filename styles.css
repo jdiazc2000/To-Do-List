@@ -1,23 +1,90 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "arial", heletica, sans-serif;
+  font-size: 12px;
+  background: #2980b9
+    url("https://static.tumblr.com/03fbbc566b081016810402488936fbae/pqpk3dn/MRSmlzpj3/tumblr_static_bg3.png")
+    repeat 0 0;
+  -webkit-animation: 10s linear 0s normal none infinite animate;
+  -moz-animation: 10s linear 0s normal none infinite animate;
+  -ms-animation: 10s linear 0s normal none infinite animate;
+  -o-animation: 10s linear 0s normal none infinite animate;
+  animation: 10s linear 0s normal none infinite animate;
+}
+
+@-webkit-keyframes animate {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 500px 0;
+  }
+}
+
+@-moz-keyframes animate {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 500px 0;
+  }
+}
+
+@-ms-keyframes animate {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 500px 0;
+  }
+}
+
+@-o-keyframes animate {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 500px 0;
+  }
+}
+
+@keyframes animate {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 500px 0;
+  }
+}
+
 form {
   text-align: center;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  max-width: 53.5rem;
+  width: 98%;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 10px;
 }
+
 
 form .mdl-button {
-  padding-left: 1rem;
-}
-
-h1 {
-  color: red;
+  margin-bottom: 0.5rem;
 }
 
 #div_pruebaa {
   display: grid;
-  grid-template-columns: 100px 100px 100px;
+  grid-template-columns: repeat(auto-fill, 15em);
   grid-template-rows: auto;
 
   justify-content: space-evenly;
@@ -25,18 +92,25 @@ h1 {
   align-content: space-evenly;
   align-items: center;
 
-  gap: 1.2rem;
+  gap: 3rem;
+  background: rgba( 255, 255, 255, 0.2 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 8px );
+  -webkit-backdrop-filter: blur( 8px );
+  border-radius: 10px;
+  width: 98%;
+  max-width: 750px;
+  margin: 0 auto;
 }
 
-
 .fadeIn {
-  animation: fadingIn 0.5s forwards;
   -webkit-animation: fadingIn 0.5s forwards;
+  animation: fadingIn 0.5s forwards;
 }
 
 .fadeOut {
-  animation: fadingOut 0.5s forwards;
   -webkit-animation: fadingOut 0.5s forwards;
+  animation: fadingOut 0.5s forwards;
 }
 
 @keyframes fadingIn {
@@ -57,7 +131,6 @@ h1 {
   }
 }
 
-/* From uiverse.io by @alexruix */
 .card {
   width: 190px;
   height: 254px;
@@ -68,20 +141,20 @@ h1 {
   border: 2px solid #c3c6ce;
   transition: 0.5s ease-out;
   overflow: visible;
-
   text-align: center;
- }
- 
- .card-details {
+  margin: 0.5rem;
+}
+
+.card-details {
   color: rgb(0, 0, 0);
   height: 100%;
-  gap: .5em;
+  gap: 0.5em;
   display: grid;
   place-content: center;
   border-radius: 1rem;
- }
- 
- .card-button {
+}
+
+.card-button {
   transform: translate(-50%, 125%);
   width: 60%;
   border-radius: 1rem;
@@ -89,31 +162,31 @@ h1 {
   background-color: #008bf8;
   color: #fff;
   font-size: 1rem;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   position: absolute;
   left: 50%;
   bottom: 0;
   opacity: 0;
   transition: 0.3s ease-out;
- }
- 
- .text-body {
+}
+
+.text-body {
   color: rgb(0, 0, 0);
- }
- 
- /*Text*/
- .text-title {
+}
+
+/*Text*/
+.text-title {
   font-size: 1.5em;
   font-weight: bold;
- }
- 
- /*Hover*/
- .card:hover {
+}
+
+/*Hover*/
+.card:hover {
   border-color: #008bf8;
   box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
- }
- 
- .card:hover .card-button {
+}
+
+.card:hover .card-button {
   transform: translate(-50%, 50%);
   opacity: 1;
- }
+}

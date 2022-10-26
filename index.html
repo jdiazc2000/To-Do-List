@@ -11,25 +11,38 @@
   <body>
     <form action="submit" id="taskForm">
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="text" id="title" />
+        <input
+          class="mdl-textfield__input"
+          type="text"
+          id="title"
+          title="Title"
+          autocomplete="off"
+        />
         <label class="mdl-textfield__label" for="sample3">Título</label>
       </div>
 
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="text" id="description" />
+        <input
+          class="mdl-textfield__input"
+          type="text"
+          id="description"
+          title="Description"
+          autocomplete="off"
+        />
         <label class="mdl-textfield__label" for="sample3">Descripción</label>
       </div>
-
-      <button
-        id="AddTaskBtn"
-        class="mdl-button grow mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"
-        disabled
-      >
-        <i class="material-icons">add_circle</i>
-      </button>
+      <div>
+        <button
+          id="AddTaskBtn"
+          class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"
+          disabled
+        >
+          <i class="material-icons">add_circle</i>
+        </button>
+      </div>
     </form>
 
-      <div id="div_pruebaa"></div>
+    <div id="div_pruebaa"></div>
 
     <!--<button id="DeleteAll">Limpiar To'Dos</button>-->
     <link
