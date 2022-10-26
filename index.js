@@ -24,115 +24,116 @@ DivPrueba.addEventListener("click", (e) => {
 
   //console.log(taskID)
 
-  if(Old_TaskData.lenght != 0){
-    Old_TaskData = localStorage.setItem("Tasks",JSON.stringify(PrintPendientTasks))
-  }else{
+  if (Old_TaskData.lenght != 0) {
+    Old_TaskData = localStorage.setItem(
+      "Tasks",
+      JSON.stringify(PrintPendientTasks)
+    );
+  } else {
     localStorage.setItem("Tasks", "[]");
   }
 
   Old_TaskData = JSON.parse(localStorage.getItem("Tasks"));
 
-  InsertDivAnimation = document.getElementById(`${DivID}`)
-  InsertDivAnimation.classList.add('fadeOut')
+  InsertDivAnimation = document.getElementById(`${DivID}`);
+  InsertDivAnimation.classList.add("fadeOut");
 
   setTimeout(() => {
-    document.getElementById(`${DivID}`).remove()
+    document.getElementById(`${DivID}`).remove();
   }, 500);
-;
 
   //console.log("Elemento Borrado");
   //console.log(Old_TaskData)
 });
 
-const AddNewTaskAnimation = (id,title,description,date,hoverColor) =>{
+const AddNewTaskAnimation = (id, title, description, date, hoverColor) => {
   const TaskDiv = document.createElement("div");
-    TaskDiv.setAttribute("id", "id_" + id);
-    TaskDiv.classList.add('card')
-    TaskDiv.classList.add('fadeIn')
- 
-      //
-      const DataDiv = document.createElement("div")
-      DataDiv.classList.add('card-details')
-      DataDiv.style.backgroundColor = "#" + hoverColor 
+  TaskDiv.setAttribute("id", "id_" + id);
+  TaskDiv.classList.add("card");
+  TaskDiv.classList.add("fadeIn");
 
-      const pTitle = document.createElement("p");
-      pTitle.classList.add('text-title')
-      pTitle.textContent = title;
-  
-      const pDescrip = document.createElement("p");
-      pDescrip.classList.add('text-body')
-      pDescrip.textContent = description;
-  
-      const pDate = document.createElement("p");
-      pDate.classList.add('text-date')
-      pDate.textContent = date;
-  
-      const DelTask = document.createElement("button");
-      DelTask.textContent = "Eliminar";
-      DelTask.classList.add(id);
-      DelTask.classList.add('card-button');
-     //
+  const pTitle = document.createElement("h2");
+  pTitle.textContent = title;
 
-    TaskDiv.appendChild(DataDiv)
-    DataDiv.appendChild(pTitle);
-    DataDiv.appendChild(pDescrip);
-    DataDiv.appendChild(pDate);
-    DataDiv.appendChild(DelTask);
+  const colorLine = document.createElement("div");
+  colorLine.classList.add("line");
+  colorLine.style.backgroundColor = "#" + hoverColor;
 
-    DivPrueba.appendChild(TaskDiv);
-}
+  const pDescrip = document.createElement("p");
+  pDescrip.textContent = description;
+
+  const DetailsDiv = document.createElement("div");
+  DetailsDiv.classList.add("DeleteBtn_Div");
+
+  const pDate = document.createElement("p");
+  pDate.textContent = date;
+
+  const DelTask = document.createElement("button");
+  DelTask.textContent = "Eliminar";
+  DelTask.classList.add(id);
+  DelTask.style.borderColor = "#" + hoverColor;
+  //
+
+  TaskDiv.appendChild(pTitle);
+  TaskDiv.appendChild(colorLine);
+  TaskDiv.appendChild(pDescrip);
+  TaskDiv.appendChild(DetailsDiv);
+  DetailsDiv.appendChild(pDate)
+  DetailsDiv.appendChild(DelTask);
+
+  DivPrueba.appendChild(TaskDiv);
+};
 
 const ReadAllTasks = () => {
   Old_TaskData.forEach((Task) => {
     const TaskDiv = document.createElement("div");
     TaskDiv.setAttribute("id", "id_" + Task.id);
-    TaskDiv.classList.add('TaskDiv')
-    TaskDiv.classList.add('card')
-    TaskDiv.classList.add('fadeIn')
-
-    //
-    const DataDiv = document.createElement("div")
-    DataDiv.classList.add('card-details')
-    DataDiv.style.backgroundColor = "#" + Task.hoverColor
- 
-    const pTitle = document.createElement("p");
-    pTitle.classList.add('text-title')
+    TaskDiv.classList.add("card");
+    TaskDiv.classList.add("fadeIn");
+  
+    const pTitle = document.createElement("h2");
     pTitle.textContent = Task.title;
-
+  
+    const colorLine = document.createElement("div");
+    colorLine.classList.add("line");
+    colorLine.style.backgroundColor = "#" + Task.hoverColor;
+  
     const pDescrip = document.createElement("p");
-    pDescrip.classList.add('text-body')
     pDescrip.textContent = Task.description;
-
+  
+    const DetailsDiv = document.createElement("div");
+    DetailsDiv.classList.add("DeleteBtn_Div");
+  
     const pDate = document.createElement("p");
-    pDate.classList.add('text-date')
     pDate.textContent = Task.date;
-
+  
     const DelTask = document.createElement("button");
-    DelTask.textContent = "Borrar";
+    DelTask.textContent = "Eliminar";
     DelTask.classList.add(Task.id);
-    DelTask.classList.add('card-button');
-   //
-
-    TaskDiv.appendChild(DataDiv)
-    DataDiv.appendChild(pTitle);
-    DataDiv.appendChild(pDescrip);
-    DataDiv.appendChild(pDate);
-    TaskDiv.appendChild(DelTask);
-
+    DelTask.style.borderColor = "#" + Task.hoverColor;
+    //
+  
+    TaskDiv.appendChild(pTitle);
+    TaskDiv.appendChild(colorLine);
+    TaskDiv.appendChild(pDescrip);
+    TaskDiv.appendChild(DetailsDiv);
+    DetailsDiv.appendChild(pDate)
+    DetailsDiv.appendChild(DelTask);
+  
     DivPrueba.appendChild(TaskDiv);
   });
 };
 
-TaskForm.addEventListener('keyup', () => {
+TaskForm.addEventListener("keyup", () => {
   let Form_TaskTitle = TaskForm.title.value;
   let Form_TaskDescrip = TaskForm.description.value;
 
-  if (Form_TaskTitle == "" || Form_TaskDescrip == ""){
-    AddTaskBtn.setAttribute('disabled','disabled')
-  }else{
-    AddTaskBtn.removeAttribute('disabled')
+  if (Form_TaskTitle == "" || Form_TaskDescrip == "") {
+    AddTaskBtn.setAttribute("disabled", "disabled");
+  } else {
+    AddTaskBtn.removeAttribute("disabled");
   }
-})
+});
 
 AddTaskBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -142,15 +143,18 @@ AddTaskBtn.addEventListener("click", (e) => {
   if (Form_TaskTitle == "" || Form_TaskDescrip == "") {
     let SnackBar = document.getElementById("snackbar");
     SnackBar.className = "show";
-    setTimeout(function(){ SnackBar.className = SnackBar.className.replace("show", ""); }, 3000);
+    setTimeout(function () {
+      SnackBar.className = SnackBar.className.replace("show", "");
+    }, 3000);
   } else {
-    
+    let date = new Date()
+
     const NewTask = {
       id: Math.random(),
       title: Form_TaskTitle,
       description: Form_TaskDescrip,
-      date: new Date().toDateString(),
-      hoverColor: Math.floor(Math.random()*16777215).toString(16)
+      date: date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear(),
+      hoverColor: Math.floor(Math.random() * 16777215).toString(16),
     };
 
     new_TaskData = NewTask;
@@ -159,9 +163,16 @@ AddTaskBtn.addEventListener("click", (e) => {
     localStorage.setItem("Tasks", JSON.stringify(Old_TaskData));
     //console.log(Old_TaskData);
 
-    AddTaskBtn.setAttribute('disabled','disabled')
+    AddTaskBtn.setAttribute("disabled", "disabled");
     TaskForm.reset();
-    AddNewTaskAnimation(new_TaskData.id,new_TaskData.title,new_TaskData.description,new_TaskData.date,new_TaskData.hoverColor);
+
+    AddNewTaskAnimation(
+      new_TaskData.id,
+      new_TaskData.title,
+      new_TaskData.description,
+      new_TaskData.date,
+      new_TaskData.hoverColor
+    );
   }
 });
 
@@ -178,5 +189,3 @@ DeleteAllBtn.addEventListener("click", (e) => {
   ReadTasks();
 });
 */
-
-
