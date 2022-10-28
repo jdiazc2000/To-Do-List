@@ -36,11 +36,14 @@ DivPrueba.addEventListener("click", (e) => {
   Old_TaskData = JSON.parse(localStorage.getItem("Tasks"));
 
   InsertDivAnimation = document.getElementById(`${DivID}`);
-  InsertDivAnimation.classList.add("fadeOut");
+  
+  if(InsertDivAnimation != null){
+    InsertDivAnimation.classList.add("fadeOut");
 
-  setTimeout(() => {
-    document.getElementById(`${DivID}`).remove();
-  }, 500);
+    setTimeout(() => {
+      document.getElementById(`${DivID}`).remove();
+    }, 500);
+  }
 
   //console.log("Elemento Borrado");
   //console.log(Old_TaskData)
